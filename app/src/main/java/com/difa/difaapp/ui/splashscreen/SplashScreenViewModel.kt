@@ -1,4 +1,6 @@
 package com.difa.difaapp.ui.splashscreen
 
-class SplashScreenViewModel {
+import androidx.lifecycle.ViewModel
+
+class SplashScreenViewModel: ViewModel() {
 }
