@@ -2,4 +2,54 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red_google_btn">#DE5246</color>
+
+    <!--Yellow-->
+    <color name="yellow_50">#fefae8</color>
+    <color name="yellow_100">#fcf0b6</color>
+    <color name="yellow_200">#fae893</color>
+    <color name="yellow_300">#f8de62</color>
+    <color name="yellow_400">#f6d843</color>
+    <color name="yellow_500">#f4ce14</color>
+    <color name="yellow_600">#debb12</color>
+    <color name="yellow_700">#ad920e</color>
+    <color name="yellow_800">#86710b</color>
+    <color name="yellow_900">#665708</color>
+
+    <!--Blue-->
+    <color name="blue_50">#e8f6fe</color>
+    <color name="blue_100">#b6e4fc</color>
+    <color name="blue_200">#93d7fa</color>
+    <color name="blue_300">#62c5f8</color>
+    <color name="blue_400">#43baf6</color>
+    <color name="blue_500">#14a9f4</color>
+    <color name="blue_600">#129ade</color>
+    <color name="blue_700">#0e78ad</color>
+    <color name="blue_800">#0b5d86</color>
+    <color name="blue_900">#084766</color>
+
+    <!--Purple-->
+    <color name="purple_50">#efe8fe</color>
+    <color name="purple_100">#cdb6fc</color>
+    <color name="purple_200">#b593fa</color>
+    <color name="purple_300">#9462f8</color>
+    <color name="purple_400">#7f43f6</color>
+    <color name="purple_500">#5f14f4</color>
+    <color name="purple_600">#5612de</color>
+    <color name="purple_700">#430ead</color>
+    <color name="purple_800">#340b86</color>
+    <color name="purple_900">#280866</color>
+
+    <!--Grey-->
+    <color name="grey_50">#eaeaea</color>
+    <color name="grey_100">#bdbdbd</color>
+    <color name="grey_200">#9d9d9d</color>
+    <color name="grey_300">#717171</color>
+    <color name="grey_400">#555555</color>
+    <color name="grey_500">#2b2b2b</color>
+    <color name="grey_600">#272727</color>
+    <color name="grey_700">#1f1f1f</color>
+    <color name="grey_800">#181818</color>
+    <color name="grey_900">#121212</color>
+
 </resources>

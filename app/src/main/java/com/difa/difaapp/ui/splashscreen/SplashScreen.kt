@@ -8,15 +8,17 @@ import android.os.Looper
 import com.difa.difaapp.R
 import com.difa.difaapp.databinding.ActivitySplashScreenBinding
 import com.difa.difaapp.ui.MainActivity
+import com.difa.difaapp.ui.auth.login.LoginActivity
 
 class SplashScreen : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash_screen)
+        binding = ActivitySplashScreenBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         Handler(Looper.getMainLooper()).postDelayed(
             {
-                startActivity(Intent(this@SplashScreen, MainActivity::class.java))
+                startActivity(Intent(this@SplashScreen, LoginActivity::class.java))
                 finish()
             }, DELAY_MILIS
         )
