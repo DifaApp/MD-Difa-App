@@ -1,4 +1,4 @@
-package com.difa.difaapp.ui.onboading
+package com.difa.difaapp.ui.onboarding
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
