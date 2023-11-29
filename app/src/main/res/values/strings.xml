@@ -15,4 +15,5 @@
 
     <string name="text_email_invalid">Email Anda Tidak Sesuai</string>
     <string name="text_error_custome_edittext">Kata Sandi Minimal 8 karater</string>
+    <string name="text_nama_lengkap">Nama Lengkap</string>
 </resources>
