@@ -4,4 +4,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tagline_app">Tetep terhubung dengan difable</string>
     <string name="version_name">Version 1</string>
+    <string name="text_masuk">Masuk</string>
+    <string name="text_passowrdi">Kata Sandi</string>
+    <string name="text_email">Alamat Email</string>
+    <string name="text_lupa_pass">Lupa Password?</string>
+    <string name="text_dont_have_account">Tidak Punya Akun?</string>
+    <string name="text_daftar">Daftar</string>
+    <string name="text_atau">Atau</string>
+    <string name="text_masuk_dengan_google">Masuk Dengan Google</string>
 </resources>
