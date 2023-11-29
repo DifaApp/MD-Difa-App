@@ -12,4 +12,7 @@
     <string name="text_daftar">Daftar</string>
     <string name="text_atau">Atau</string>
     <string name="text_masuk_dengan_google">Masuk Dengan Google</string>
+  
+    <string name="text_email_invalid">Email Anda Tidak Sesuai</string>
+    <string name="text_error_custome_edittext">Kata Sandi Minimal 8 karater</string>
 </resources>
