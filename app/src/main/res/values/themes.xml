@@ -3,7 +3,68 @@
     <style name="Base.Theme.CapstoneProject" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <item name="colorPrimary">@color/yellow_500</item>
+        <item name="colorPrimaryVariant">@color/yellow_500</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Secondary Brand Color -->
+        <item name="colorSecondary">@color/yellow_500</item>
+        <item name="colorSecondaryVariant">@color/white</item>
+        <item name="colorOnSecondary">@color/yellow_500</item>
+
+        <item name="android:statusBarColor" tools:targetApi="1">?attr/colorOnPrimary</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowEnterTransition">@android:transition/explode</item>
+        <item name="android:windowExitTransition">@android:transition/explode</item>
+        <item name="android:windowSharedElementsUseOverlay">false</item>
     </style>
 
     <style name="Theme.CapstoneProject" parent="Base.Theme.CapstoneProject" />
+
+    <!--Text Style-->
+    <style name="Text.Heading" parent="">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.Heading.Level1" parent="Text.Heading">
+        <item name="fontFamily">@font/nunitosansbold</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="Text.Heading.Level2" parent="Text.Heading">
+        <item name="fontFamily">@font/nunitosansbold</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="Text.Heading.Level3" parent="Text.Heading">
+        <item name="fontFamily">@font/nunitosanssemibold</item>
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="Text.Heading.Level4" parent="Text.Heading">
+        <item name="fontFamily">@font/nunitosanssemibold</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="Text.Body" parent="">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Text.Body.Large" parent="Text.Body">
+        <item name="fontFamily">@font/nunitosanssemibold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Text.Body.Medium" parent="Text.Body">
+        <item name="fontFamily">@font/nunitosansbold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Text.Body.Regular" parent="Text.Body">
+        <item name="fontFamily">@font/nunitosansregular</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>
