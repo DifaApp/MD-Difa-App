@@ -63,9 +63,14 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="Text.Body.Regular" parent="Text.Body">
+    <style name="Text.Body.Small" parent="Text.Body">
         <item name="fontFamily">@font/nunitosansregular</item>
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Text.Body.Normal" parent="Text.Body">
+        <item name="fontFamily">@font/nunitosansregular</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
 </resources>

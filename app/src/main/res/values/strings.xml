@@ -16,4 +16,14 @@
     <string name="text_email_invalid">Email Anda Tidak Sesuai</string>
     <string name="text_error_custome_edittext">Kata Sandi Minimal 8 karater</string>
     <string name="text_nama_lengkap">Nama Lengkap</string>
+
+    <!--Onboarding-->
+    <string name="text_lewati">Lewati</string>
+    <string name="text_lanjut">Lanjut</string>
+    <string name="text_headline_onboarding_page1">Mereka Sama Dengan Kita</string>
+    <string name="text_body_onboarding_page1">Hanya saja mereka perlu perlakuan \n spesial agar kita bisa berkomunikasi \n dengan mereka</string>
+    <string name="text_headline_onboarding_page2">Bagaimana Caranya?</string>
+    <string name="text_body_onboarding_page2">Dengan bahasa isyarat kita bisa \n berkomunikasi dengan mereka, SIBI &amp; \n BISINDO</string>
+    <string name="text_headline_onboarding_page3">Permudah Komunikasi </string>
+    <string name="text_body_onboarding_page3">Difa hadir sebagai aplikasi deteksi gerakan \n tangan bahasa isyarat yang dirancang \n khusus untuk anak-anak agar mereka bisa \n berkomunkasi dengan mereka kaum \n difabel sebayanya</string>
 </resources>

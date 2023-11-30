@@ -21,6 +21,11 @@
         <activity
             android:name=".ui.auth.login.LoginActivity"
             android:exported="false" />
+        <activity android:name=".ui.onboarding.OnboardingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="false"/>
         <activity
             android:name=".ui.splashscreen.SplashScreen"
             android:exported="true" >
@@ -29,11 +34,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.MainActivity"
-            android:exported="true">
-
         </activity>
     </application>
 
