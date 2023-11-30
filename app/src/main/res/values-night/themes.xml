@@ -72,5 +72,4 @@
         <item name="fontFamily">@font/nunitosansregular</item>
         <item name="android:textSize">14sp</item>
     </style>
-
 </resources>
