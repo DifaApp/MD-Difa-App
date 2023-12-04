@@ -34,4 +34,6 @@
     <!--Navigation-->
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
+    <string name="text_getstarted">Mulai Berkomunikasi Teman Difamu</string>
+    <string name="text_btn_get_started">Mulai Berkomunikasi</string>
 </resources>

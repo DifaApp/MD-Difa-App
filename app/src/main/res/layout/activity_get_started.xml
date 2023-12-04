@@ -6,4 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".ui.onboarding.GetStartedActivity">
 
+    <TextView
+        android:id="@+id/tv_headline_get_started"
+        style="@style/Text.Heading.Level4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="150dp"
+        android:text="@string/text_getstarted"
+        android:textAlignment="center"
+        android:textColor="@color/yellow_500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/iv_onboarding_page1"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/dummy_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_headline_get_started" />
+
+    <Button
+        android:id="@+id/btn_get_started"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_onboarding_page1"
+        android:text="@string/text_btn_get_started"
+        android:background="@drawable/bg_button_yellow"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
