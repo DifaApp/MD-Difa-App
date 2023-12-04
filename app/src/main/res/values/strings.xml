@@ -30,4 +30,8 @@
     <string name="text_logout">Logout</string>
     <string name="text_kebijakan_privasi">Kebijakan Privasi</string>
     <string name="text_settings">Settings</string>
+    
+    <!--Navigation-->
+    <string name="title_home">Home</string>
+    <string name="title_profile">Profile</string>
 </resources>
