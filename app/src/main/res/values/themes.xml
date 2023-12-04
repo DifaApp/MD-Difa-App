@@ -8,6 +8,8 @@
         <item name="colorPrimaryVariant">@color/yellow_500</item>
         <item name="colorOnPrimary">@color/white</item>
 
+        <item name="colorSecondaryContainer">@color/yellow_500</item>
+
         <!-- Secondary Brand Color -->
         <item name="colorSecondary">@color/yellow_500</item>
         <item name="colorSecondaryVariant">@color/white</item>
