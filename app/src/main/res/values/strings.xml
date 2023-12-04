@@ -26,4 +26,8 @@
     <string name="text_body_onboarding_page2">Dengan bahasa isyarat kita bisa \n berkomunikasi dengan mereka, SIBI &amp; \n BISINDO</string>
     <string name="text_headline_onboarding_page3">Permudah Komunikasi </string>
     <string name="text_body_onboarding_page3">Difa hadir sebagai aplikasi deteksi gerakan \n tangan bahasa isyarat yang dirancang \n khusus untuk anak-anak agar mereka bisa \n berkomunkasi dengan mereka kaum \n difabel sebayanya</string>
+    <string name="text_profile">Profile</string>
+    <string name="text_logout">Logout</string>
+    <string name="text_kebijakan_privasi">Kebijakan Privasi</string>
+    <string name="text_settings">Settings</string>
 </resources>
