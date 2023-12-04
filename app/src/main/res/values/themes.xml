@@ -74,4 +74,13 @@
         <item name="fontFamily">@font/nunitosansregular</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="StyleFAB" parent="Widget.Design.FloatingActionButton">
+        <item name="shapeAppearanceOverlay">@style/FABStyleCircle</item>
+    </style>
+
+    <style name="FABStyleCircle" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
 </resources>
