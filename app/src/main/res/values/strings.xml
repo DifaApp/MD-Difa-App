@@ -36,4 +36,9 @@
     <string name="title_profile">Profile</string>
     <string name="text_getstarted">Mulai Berkomunikasi Teman Difamu</string>
     <string name="text_btn_get_started">Mulai Berkomunikasi</string>
+    <string name="dummy_quotes">“Kalau mau menunggu sampai kita siap, kita akan menghabiskan sisa hidup kita hanya untuk menunggu</string>
+    <string name="dummy_creator_quotes">Lemony Snicket.</string>
+    <string name="text_quotes">Quotes</string>
+    <string name="text_belajar_sibi">Rekomendasi Belajar Sibi</string>
+    <string name="text_detail_sibi">Baca Dan Pelajari Supaya Kamu Bisa Menjadi Diri yang lebih baik</string>
 </resources>
