@@ -1,25 +1,63 @@
 package com.difa.difaapp.ui.objdetection.fragment
 
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import com.difa.difaapp.R
 import com.difa.difaapp.databinding.FragmentPermissionBinding
 
-
+private val PERMISSIONS_REQUIRED = arrayOf(Manifest.permission.CAMERA)
 class PermissionFragment : Fragment() {
 
-    private lateinit var binding: FragmentPermissionBinding
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                Toast.makeText(context, "Permission request granted", Toast.LENGTH_LONG).show()
+                navigateToCamera()
+            } else {
+                Toast.makeText(context, "Permission request denied", Toast.LENGTH_LONG).show()
+            }
+        }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = FragmentPermissionBinding.inflate(layoutInflater, container, false)
-        val view = binding.root
-        return view
+    private fun navigateToCamera() {
+        lifecycleScope.launchWhenCreated {
+            Navigation.findNavController(requireActivity(), R.id.fragment_container).navigate(R.id.action_permissionFragment_to_cameraFragment)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                navigateToCamera()
+            }
+            else -> {
+                requestPermissionLauncher.launch(
+                    Manifest.permission.CAMERA)
+            }
+        }
+    }
+
+    companion object {
+
+        /** Convenience method used to check if all permissions required by this app are granted */
+        fun hasPermissions(context: Context) = PERMISSIONS_REQUIRED.all {
+            ContextCompat.checkSelfPermission(context, it) == PackageManager.PERMISSION_GRANTED
+        }
     }
 }

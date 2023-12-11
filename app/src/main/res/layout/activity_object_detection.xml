@@ -13,6 +13,7 @@
         android:background="@android:color/transparent"
         android:keepScreenOn="true"
         app:defaultNavHost="true"
+        app:navGraph="@navigation/obj_detection_navigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
