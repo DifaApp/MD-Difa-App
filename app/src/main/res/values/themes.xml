@@ -83,4 +83,17 @@
         <item name="cornerSize">50%</item>
         <item name="cornerFamily">rounded</item>
     </style>
+
+    <style name="CustomCorner">
+        <item name="cornerFamily">?attr/shapeCornerFamily</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+
+    <style name="Nav.Bottom.ActiveIndicator" parent="">
+        <item name="android:width">44dp</item>
+        <item name="android:height">44dp</item>
+        <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal</item>
+        <item name="shapeAppearance">@style/CustomCorner</item>
+        <item name="android:color">@color/yellow_500</item>
+    </style>
 </resources>
