@@ -21,15 +21,7 @@
             android:layout_marginTop="30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-        
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/ic_notif"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_quotes"
-            app:layout_constraintBottom_toBottomOf="@id/tv_quotes"/>
+
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_quotes"
@@ -155,6 +147,7 @@
             />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_sibi_learn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
