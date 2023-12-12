@@ -91,6 +91,9 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.github.bumptech.glide:glide:4.13.1")
 
+    // spotlight
+    implementation("com.github.takusemba:spotlight:2.0.1")
+
     // testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
@@ -13,6 +15,9 @@ import com.difa.difaapp.R
 import com.difa.difaapp.data.local.entity.Quotes
 import com.difa.difaapp.databinding.FragmentHomeBinding
 import com.difa.difaapp.ui.home.adapter.QuotesAdapter
+import com.takusemba.spotlight.Spotlight
+import com.takusemba.spotlight.Target
+import com.takusemba.spotlight.shape.RoundedRectangle
 
 class HomeFragment : Fragment() {
 
@@ -63,6 +68,10 @@ class HomeFragment : Fragment() {
                 selectedDots(position, data)
             }
         })
+
+        binding.cardLearnApp.setOnClickListener { startButton ->
+            setSpotlight()
+        }
     }
 
     private fun selectedDots(position: Int, data: List<Quotes>) {
@@ -82,5 +91,66 @@ class HomeFragment : Fragment() {
             listDot[i].textSize = 15f
             binding.dotsIndicator.addView(listDot[i])
         }
+    }
+
+    private fun setSpotlight(){
+        val target = ArrayList<Target>()
+
+        val firstRoot = FrameLayout(requireContext())
+        val first = layoutInflater.inflate(R.layout.layout_spotlight_home_1, firstRoot)
+        val firstTarget = Target.Builder()
+            .setAnchor(binding.vpQuotes)
+            .setShape(RoundedRectangle(500f, 1050f, 10f))
+            .setOverlay(first)
+            .build()
+
+        target.add(firstTarget)
+
+        val secondRoot = FrameLayout(requireContext())
+        val second = layoutInflater.inflate(R.layout.layout_spotlight_home_2, secondRoot)
+        val secondTarget = Target.Builder()
+            .setAnchor(binding.cardCamera)
+            .setShape(RoundedRectangle(400f, 1050f, 10f))
+            .setOverlay(second)
+            .build()
+
+        target.add(secondTarget)
+
+        val thirdRoot = FrameLayout(requireContext())
+        val third = layoutInflater.inflate(R.layout.layout_spotlight_home_3, thirdRoot)
+        val thirdTarget = Target.Builder()
+            .setAnchor(binding.tvSibi)
+            .setShape(RoundedRectangle(100f, 1000f, 10f))
+            .setOverlay(third)
+            .build()
+
+        target.add(thirdTarget)
+
+        val spotlight = Spotlight.Builder(requireActivity())
+            .setTargets(target)
+            .setBackgroundColor(R.color.spotlightBackground)
+            .setDuration(1000L)
+            .setAnimation(DecelerateInterpolator(2f))
+            .build()
+
+        spotlight.start()
+
+        val nextTarget = View.OnClickListener { spotlight.next() }
+
+        val prevTarget = View.OnClickListener { spotlight.previous() }
+
+        val closeSpotlight = View.OnClickListener { spotlight.finish() }
+
+        first.findViewById<View>(R.id.btn_next).setOnClickListener(nextTarget)
+        first.findViewById<View>(R.id.btn_prev).setOnClickListener(prevTarget)
+        first.findViewById<View>(R.id.iv_stop).setOnClickListener(closeSpotlight)
+
+        second.findViewById<View>(R.id.btn_next).setOnClickListener(nextTarget)
+        second.findViewById<View>(R.id.btn_prev).setOnClickListener(prevTarget)
+        second.findViewById<View>(R.id.iv_stop).setOnClickListener(closeSpotlight)
+
+        third.findViewById<View>(R.id.btn_next).setOnClickListener(nextTarget)
+        third.findViewById<View>(R.id.btn_prev).setOnClickListener(prevTarget)
+        third.findViewById<View>(R.id.iv_stop).setOnClickListener(closeSpotlight)
     }
 }
