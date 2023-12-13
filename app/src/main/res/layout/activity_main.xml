@@ -22,7 +22,7 @@
         android:layout_gravity="bottom"
         app:contentInsetStart="0dp"
         app:fabCradleMargin="20dp"
-        app:fabAnchorMode="cradle"
+        app:fabAnchorMode="embed"
         app:backgroundTint="@color/white"
         app:fabAlignmentMode="center"
         app:fabCradleRoundedCornerRadius="40dp">
