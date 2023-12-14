@@ -10,6 +10,7 @@
     <string name="text_lupa_pass">Lupa Password?</string>
     <string name="text_dont_have_account">Tidak Punya Akun?</string>
     <string name="text_daftar">Daftar</string>
+    <style name="text_kebijakan">Kebijakan Aplikasi</style>
     <string name="text_atau">Atau</string>
     <string name="text_masuk_dengan_google">Masuk Dengan Google</string>
 
@@ -41,4 +42,18 @@
     <string name="text_quotes">Quotes</string>
     <string name="text_belajar_sibi">Rekomendasi Belajar Sibi</string>
     <string name="text_detail_sibi">Baca Dan Pelajari Supaya Kamu Bisa Menjadi Diri yang lebih baik</string>
+    <string name="text_policy_description">Kebijakan privasi ini menjelaskan bagaimana kami \n(Difa dan afiliasi-afiliasi, atau \'kami\') mengumpulkan, menyimpan, mengolah dan melindungi informasi pribadi anda. kebijakan privasi ini berlaku semua yang menggunakan produk aplikasi.\n\nKebijakan aplikasi ini menjelaskan hal-hal sebagai berikut:\n</string>
+    <string name="text_point_1">1. Data Pridi yang kami kumpulkan</string>
+    <string name="text_point_2">2. Penggunaan Informasi pribadi anda</string>
+    <string name="text_point_3">3. penyimpanan infomasi pribadi anda</string>
+    <string name="text_point_4">4. perubahan atas kebijakan privasi</string>
+    <string name="text_point_5">5. cara untuk menghubungi pihak Difa</string>
+    <string name="text_point_1_desc">Informasi pribadi yang kami kumpulkan adalah informasi data diri yang dapat diidentifikasikan atau dapat digunakan untuk mengidentifikasi, menghubungi orang atau perangkat yang terkait dengan informasi tersebut. Informasi pribadi meliputi nama, alamat email, tanggal lahir, tinggi badan, berat badan, dan jenis kelamin. Informasi pribadi yang kami kumpulkan dapat diberikan oleh Anda secara langsung atau oleh pihak ketiga (misalnya: Ketika mendaftar atau menggunakan aplikasi, Ketika menghubungi layanan pelanggan kami, atau sebaliknya ketika anda memberikan informasi pribadi kepada kami). Kami mendapatkan informasi dalam berbagai macam bentuk dan tujuan (yang diizinkan berdasarkan peraturan perundang-undangan yang berlaku).</string>
+    <string name="text_point_2_desc">Untuk memberikan jasa kami dan meningkatkan pengalaman Anda dalam menggunakan layanan kami. Informasi pribadi Anda dikumpulkan dengan tujuan sebagai berikut maupun untuk tujuan lain yang diizinkan oleh peraturan perundang-undangan yang berlaku.</string>
+    <string name="text_point_3_desc">Informasi pribadi anda hanya akan disimpan selama diperlukan untuk memenuhi tujuan dari pengumpulannya, atau selama penyimpanan tersebut diperlukan atau diperbolehkan oleh peraturan perundang-undangan yang berlaku.</string>
+    <string name="text_point_4_desc">Kami mengubah kebijakan privasi ini atas kebijakan kami sendiri dari waktu ke waktu, untuk memastikan bahwa kebijakan privasi ini konsisten dengan perkembangan kami di masa depan, dan/atau perubahan aturan hukum. Jika terjadi perubahan, kami akan memberitahukan perubahan tersebut melalui pemberitahuan umum yang dipublikasikan pada aplikasi, atau ke alamat e-mail yang tercantum pada akun anda. Anda setuju bertanggung jawab dalam meninjau kebijakan privasi ini secara teratur untuk informasi terbaru mengenai pengolahan data dan praktik perlindungan data kami dengan anda menggunakan aplikasi kami setelah adanya perubahan apapun terhadap kebijakan privasi ini dan segala perubahannya.</string>
+    <string name="text_point_5_desc">Jika anda memiliki pertanyaan, keluhan, atau saran mengenai kebijakan privasi atau praktik privasi jelajahin, ingin menghubungi pihak perlindungan data kami, anda dapat menghubungi kami di Difa@gmail.com</string>
+    <string name="text_setting_app">Settings App</string>
+    <string name="text_profile_account">Profile Account</string>
+    <string name="text_tentang_aplikasi">Tentang Aplikasi</string>
 </resources>
