@@ -1,5 +1,6 @@
 package com.difa.difaapp.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Html
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.difa.difaapp.R
 import com.difa.difaapp.data.local.entity.Quotes
 import com.difa.difaapp.databinding.FragmentHomeBinding
+import com.difa.difaapp.ui.home.aboutApp.AboutAppActivity
 import com.difa.difaapp.ui.home.adapter.QuotesAdapter
 import com.takusemba.spotlight.Spotlight
 import com.takusemba.spotlight.Target
@@ -71,6 +73,10 @@ class HomeFragment : Fragment() {
 
         binding.cardLearnApp.setOnClickListener { startButton ->
             setSpotlight()
+        }
+
+        binding.cardInfoApp.setOnClickListener {
+            startActivity(Intent(requireContext(), AboutAppActivity::class.java))
         }
     }
 
