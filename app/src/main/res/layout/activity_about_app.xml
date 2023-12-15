@@ -81,7 +81,7 @@
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
                             android:contentDescription="backbtn"
-                            android:src="@drawable/ic_arrow_back_24" />
+                            android:src="@drawable/ic_arrow_down_24" />
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
@@ -150,7 +150,7 @@
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
                             android:contentDescription="backbtn"
-                            android:src="@drawable/ic_arrow_back_24" />
+                            android:src="@drawable/ic_arrow_down_24" />
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
@@ -223,7 +223,7 @@
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
                             android:contentDescription="backbtn"
-                            android:src="@drawable/ic_arrow_back_24" />
+                            android:src="@drawable/ic_arrow_down_24" />
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
