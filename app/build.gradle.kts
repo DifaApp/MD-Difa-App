@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id("com.google.devtools.ksp")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -93,6 +94,10 @@ dependencies {
 
     // spotlight
     implementation("com.github.takusemba:spotlight:2.0.1")
+
+    // firabase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-analytics")
 
     // testing
     testImplementation("junit:junit:4.13.2")
