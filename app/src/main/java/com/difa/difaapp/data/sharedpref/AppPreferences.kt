@@ -13,10 +13,23 @@ val Context.appDataStore: DataStore<Preferences> by preferencesDataStore(name = 
 class AppPreferences private constructor(private val appDataStore: DataStore<Preferences>) {
 
     private val isOnboarding = booleanPreferencesKey(IS_ONBOARDING_KEY)
+    private val isSignInWithGoogle = booleanPreferencesKey(IS_SIGNINWITHGOOGLE_KEY)
 
     fun getIsOnBoardingUser(): Flow<Boolean> {
         return appDataStore.data.map { preferences ->
             preferences[isOnboarding] ?: false
+        }
+    }
+
+    suspend fun saveIsSignInWithGoogle(isSignInWithGoogle: Boolean){
+        appDataStore.edit { preferences ->
+            preferences[this.isSignInWithGoogle] = isSignInWithGoogle
+        }
+    }
+
+    fun getIsSignInWithGoogle(): Flow<Boolean> {
+        return appDataStore.data.map { preferences ->
+            preferences[isSignInWithGoogle] ?: false
         }
     }
 
@@ -32,6 +45,7 @@ class AppPreferences private constructor(private val appDataStore: DataStore<Pre
 
         // keys
         private const val IS_ONBOARDING_KEY = "isOnboardingKey"
+        private const val IS_SIGNINWITHGOOGLE_KEY = "isSignInWithGoogleKey"
 
         fun getInstance(dataStore: DataStore<Preferences>): AppPreferences{
             return INSTANCE ?: synchronized(this){

@@ -14,7 +14,6 @@ class AuthPreferences private constructor(private val authDataStore: DataStore<P
     private val userUid = stringPreferencesKey(UID_USER_KEY)
     private val userAvatar = stringPreferencesKey(AVATAR_USER_KEY)
     private val userEmail = stringPreferencesKey(EMAIL_USER_KEY)
-    private val isUserGmail = booleanPreferencesKey(IS_USER_GMAIL)
 
 
 
