@@ -4,8 +4,13 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.difa.difaapp.data.local.entity.User
+import com.difa.difaapp.data.local.entity.UserGoogle
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 val Context.authDataStore: DataStore<Preferences> by preferencesDataStore(name = "AuthPreferences")
 class AuthPreferences private constructor(private val authDataStore: DataStore<Preferences>) {
@@ -15,6 +20,72 @@ class AuthPreferences private constructor(private val authDataStore: DataStore<P
     private val userAvatar = stringPreferencesKey(AVATAR_USER_KEY)
     private val userEmail = stringPreferencesKey(EMAIL_USER_KEY)
 
+    private val userBirthDay = stringPreferencesKey(BIRTH_DATE_KEY)
+    private val userGender = stringPreferencesKey(GENDER_USER_KEY)
+
+    private val isSignInWithGoogle = booleanPreferencesKey(IS_SIGNINWITHGOOGLE_KEY)
+
+    fun getSessionUserNormalLogin(): Flow<User> {
+        return authDataStore.data.map {pref->
+            User(
+                id = pref[userUid] ?: "",
+                name = pref[userName] ?: "",
+                email = pref[userEmail] ?: "",
+                birtDate = pref[userBirthDay] ?: "",
+                gender = pref[userGender] ?: "",
+                avatar = pref[userAvatar] ?: ""
+            )
+        }
+    }
+
+    suspend fun setSessionUserNormalLogin(user: User){
+        authDataStore.edit {pref->
+            pref[userUid] = user.id
+            pref[userName] = user.name
+            pref[userEmail] = user.email
+            pref[userBirthDay] = user.birtDate
+            pref[userGender] = user.gender
+            pref[userAvatar] = user.avatar ?: ""
+        }
+    }
+
+    fun getSessionUserGoogleLogin(): Flow<UserGoogle> {
+        return authDataStore.data.map {pref->
+            UserGoogle(
+                id = pref[userUid] ?: "",
+                name = pref[userName] ?: "",
+                email = pref[userEmail] ?: "",
+                avatar = pref[userAvatar] ?: ""
+            )
+        }
+    }
+
+    suspend fun setSessionUserGoogleLogin(user: UserGoogle){
+        authDataStore.edit {pref->
+            pref[userUid] = user.id
+            pref[userName] = user.name
+            pref[userEmail] = user.email
+            pref[userAvatar] = user.avatar ?: ""
+        }
+    }
+
+    suspend fun clearTokenSession(){
+        authDataStore.edit {preferences ->
+            preferences.clear()
+        }
+    }
+
+    suspend fun saveIsSignInWithGoogle(isSignInWithGoogle: Boolean){
+        authDataStore.edit { preferences ->
+            preferences[this.isSignInWithGoogle] = isSignInWithGoogle
+        }
+    }
+
+    fun getIsSignInWithGoogle(): Flow<Boolean> {
+        return authDataStore.data.map { preferences ->
+            preferences[isSignInWithGoogle] ?: false
+        }
+    }
 
 
     companion object{
@@ -23,7 +94,12 @@ class AuthPreferences private constructor(private val authDataStore: DataStore<P
         private const val UID_USER_KEY = "uidUserKey"
         private const val AVATAR_USER_KEY = "avatarUserKey"
         private const val EMAIL_USER_KEY = "emailUserKey"
-        private const val IS_USER_GMAIL = "isUserGmailKey"
+
+        private const val BIRTH_DATE_KEY = "birtDateKey"
+        private const val GENDER_USER_KEY = "genderUserKey"
+
+        private const val IS_SIGNINWITHGOOGLE_KEY = "isSignInWithGoogleKey"
+
 
         private var INSTANCE: AuthPreferences? = null
 

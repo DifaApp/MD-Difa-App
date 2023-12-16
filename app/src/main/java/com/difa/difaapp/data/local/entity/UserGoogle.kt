@@ -1,10 +1,8 @@
 package com.difa.difaapp.data.local.entity
 
-data class User(
+data class UserGoogle(
     val id: String,
     val name: String,
     val email: String,
-    val birtDate: String,
-    val gender: String,
     val avatar: String? = ""
 )
