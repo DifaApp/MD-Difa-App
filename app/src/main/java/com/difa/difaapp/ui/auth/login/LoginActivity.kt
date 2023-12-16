@@ -7,8 +7,12 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import com.difa.difaapp.R
+import com.difa.difaapp.data.local.entity.UserGoogle
 import com.difa.difaapp.databinding.ActivityLoginBinding
+import com.difa.difaapp.ui.MainActivity
+import com.difa.difaapp.ui.ViewModelFactory
 import com.difa.difaapp.ui.auth.register.RegisterActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -22,6 +26,10 @@ import com.google.firebase.auth.auth
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityLoginBinding
+    private val viewModel by viewModels<LoginViewModel> {
+        ViewModelFactory.getInstance(applicationContext)
+    }
+
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
 
@@ -55,9 +63,18 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             }
     }
 
-    private fun updateUI(user: FirebaseUser?) {
-        if (user != null){
-
+    private fun updateUI(firebaseUser: FirebaseUser?) {
+        if (firebaseUser != null){
+            viewModel.isUserLoginWithGoogle(true)
+            val user = UserGoogle(
+                id = firebaseUser.uid,
+                name = firebaseUser.displayName ?: "",
+                email = firebaseUser.email ?: "",
+                avatar = firebaseUser.photoUrl.toString()
+            )
+            viewModel.setUserGoogle(user)
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }else {
 
         }
@@ -69,7 +86,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.id.default_web_client_id))
+            .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
 

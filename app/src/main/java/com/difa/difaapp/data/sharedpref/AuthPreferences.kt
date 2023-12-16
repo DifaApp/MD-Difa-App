@@ -33,7 +33,8 @@ class AuthPreferences private constructor(private val authDataStore: DataStore<P
                 email = pref[userEmail] ?: "",
                 birtDate = pref[userBirthDay] ?: "",
                 gender = pref[userGender] ?: "",
-                avatar = pref[userAvatar] ?: ""
+                avatar = pref[userAvatar] ?: "",
+                token = pref[userToken] ?: ""
             )
         }
     }
@@ -46,6 +47,7 @@ class AuthPreferences private constructor(private val authDataStore: DataStore<P
             pref[userBirthDay] = user.birtDate
             pref[userGender] = user.gender
             pref[userAvatar] = user.avatar ?: ""
+            pref[userToken] = user.token ?: ""
         }
     }
 
