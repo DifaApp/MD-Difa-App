@@ -62,7 +62,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/text_profile"
-        android:visibility="gone"
+        android:visibility="visible"
         style="@style/Text.Heading.Level4"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="25dp"
