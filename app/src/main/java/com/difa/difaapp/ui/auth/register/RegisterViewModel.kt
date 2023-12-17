@@ -20,4 +20,4 @@ class RegisterViewModel(private val repository: AppRepository) : ViewModel(){
             repository.saveIsUserGoogle(true)
         }
     }
-}
+

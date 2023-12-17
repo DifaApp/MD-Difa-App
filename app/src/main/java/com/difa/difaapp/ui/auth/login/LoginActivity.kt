@@ -71,6 +71,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         resultSignInLauncher.launch(singInIntent)
     }
 
+
     private fun firebaseAuthWithGoogle(idToken: String?) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
