@@ -48,6 +48,29 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+
+        auth = Firebase.auth
+
+        binding.tvSignUp.setOnClickListener(this)
+        binding.btnLoginWithGoogle.setOnClickListener(this)
+    }
+
+    private fun singInWithGoogle() {
+        val singInIntent = googleSignInClient.signInIntent
+        resultSignInLauncher.launch(singInIntent)
+    }
+
     private fun firebaseAuthWithGoogle(idToken: String?) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential)
@@ -78,29 +101,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }else {
 
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        auth = Firebase.auth
-
-        binding.tvSignUp.setOnClickListener(this)
-        binding.btnLoginWithGoogle.setOnClickListener(this)
-    }
-
-    private fun singInWithGoogle() {
-        val singInIntent = googleSignInClient.signInIntent
-        resultSignInLauncher.launch(singInIntent)
     }
 
     override fun onClick(view: View) {
