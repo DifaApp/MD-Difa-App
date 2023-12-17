@@ -32,6 +32,7 @@ class SplashScreen : AppCompatActivity() {
                     viewModel.isLoginGoogle().observe(this, Observer { isGoogleAccount->
                         if(isGoogleAccount){
                             viewModel.getSessionGoogleUser().observe(this, Observer {googleAccount ->
+                                Log.d(TAG, "onCreate: ${googleAccount.avatar}")
                                 if(!googleAccount.name.isEmpty()){
                                     Handler(Looper.getMainLooper()).postDelayed(
                                         {

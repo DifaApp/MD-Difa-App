@@ -37,12 +37,12 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.isLoginGoogle().observe(requireActivity(), Observer {
-            binding.ivImageProfile.visibility = if(it) View.GONE else View.VISIBLE
+            binding.linearRootProfile.visibility = if(it) View.GONE else View.VISIBLE
+            binding.tvLabelSecProfile.visibility = if(it) View.GONE else View.VISIBLE
             if(it){
                 viewModel.getSessionGoogleUser().observe(requireActivity(), Observer {
                     Glide.with(requireActivity())
                         .load(it.avatar)
-                        .centerCrop()
                         .into(binding.ivImageProfile)
 
                     binding.tvProfileName.text = it.name
