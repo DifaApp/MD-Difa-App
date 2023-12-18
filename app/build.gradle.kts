@@ -112,6 +112,9 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
 
+    // yoyo animeation
+    implementation("com.daimajia.androidanimations:library:2.4@aar")
+
     // testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

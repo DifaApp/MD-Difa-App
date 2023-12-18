@@ -9,13 +9,11 @@ import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.lifecycle.ViewModel
 import com.difa.difaapp.R
 import com.difa.difaapp.data.local.entity.UserGoogle
 import com.difa.difaapp.databinding.ActivityRegisterBinding
 import com.difa.difaapp.ui.MainActivity
 import com.difa.difaapp.ui.ViewModelFactory
-import com.difa.difaapp.ui.auth.login.LoginActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -132,5 +130,6 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object{
         private const val TAG = "RegisterActivity"
+        const val DELAY_MILIS = 1500L
     }
 }

@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red_google_btn">#DE5246</color>
     <color name="transparent">#00000000</color>
+    <color name="BLACK_TRANSPARENT">#57000000</color>
     <color name="spotlightBackground">#D9000000</color>
 
     <!--Yellow-->

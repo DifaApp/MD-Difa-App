@@ -53,13 +53,12 @@ class ProfileFragment : Fragment(), View.OnClickListener {
             }
         })
 
-
-
         binding.linearRootPrivacy.setOnClickListener(this)
         binding.linearRootProfile.setOnClickListener(this)
         binding.linearRootSettings.setOnClickListener(this)
         binding.linearRootLogout.setOnClickListener(this)
     }
+
 
     override fun onClick(view: View) {
         when(view.id){
@@ -73,8 +72,12 @@ class ProfileFragment : Fragment(), View.OnClickListener {
                 startActivity(Intent(requireActivity(), SettingActivity::class.java))
             }
             R.id.linear_root_logout -> {
-                requireActivity().finish()
             }
         }
+    }
+
+    companion object{
+        private const val TAG = "ProfileFragment"
+        const val DELAY_MILIS = 1500L
     }
 }
