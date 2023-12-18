@@ -49,9 +49,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:backgroundTint="@color/yellow_500"
-        app:maxImageSize="30dp"
+        app:maxImageSize="35dp"
         app:tint="@color/white"
-        android:src="@drawable/ic_photo"
+        android:src="@drawable/ic_scan_difa"
         app:layout_anchor="@id/bottom_app_bar" />
 
 
