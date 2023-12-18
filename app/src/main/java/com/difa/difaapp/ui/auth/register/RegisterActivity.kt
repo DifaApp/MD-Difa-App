@@ -1,6 +1,7 @@
 package com.difa.difaapp.ui.auth.register
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -35,6 +36,8 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         ViewModelFactory.getInstance(applicationContext)
     }
 
+    private lateinit var loadingAuth: Dialog
+
     private var resultSignUpLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ){result ->
@@ -66,11 +69,26 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.ivBack.setOnClickListener(this)
         binding.btnRegisterGoogle.setOnClickListener(this)
+
+        loadingAuth = Dialog(this)
     }
 
     private fun signUpWithGoogle() {
         val signUpIntent = googleSignInClient.signInIntent
         resultSignUpLauncher.launch(signUpIntent)
+    }
+
+    private fun dismissLoading() {
+        if(loadingAuth.isShowing){
+            loadingAuth.dismiss()
+        }
+    }
+
+    private fun showDialog() {
+        loadingAuth.setContentView(R.layout.bg_loading_auth)
+        loadingAuth.setCancelable(false)
+        loadingAuth.setCanceledOnTouchOutside(false)
+        loadingAuth.show()
     }
 
     private fun firebaseAuthWithGoogle(idToken: String?) {

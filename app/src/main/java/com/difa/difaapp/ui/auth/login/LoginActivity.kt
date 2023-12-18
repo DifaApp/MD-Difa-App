@@ -1,6 +1,7 @@
 package com.difa.difaapp.ui.auth.login
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -32,6 +33,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var loadingAuth: Dialog
 
     private var resultSignInLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -64,6 +66,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.tvSignUp.setOnClickListener(this)
         binding.btnLoginWithGoogle.setOnClickListener(this)
+
+        loadingAuth = Dialog(this)
     }
 
     private fun singInWithGoogle() {
@@ -71,6 +75,18 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         resultSignInLauncher.launch(singInIntent)
     }
 
+    private fun dismissLoading() {
+        if(loadingAuth.isShowing){
+            loadingAuth.dismiss()
+        }
+    }
+
+    private fun showDialog() {
+        loadingAuth.setContentView(R.layout.bg_loading_auth)
+        loadingAuth.setCancelable(false)
+        loadingAuth.setCanceledOnTouchOutside(false)
+        loadingAuth.show()
+    }
 
     private fun firebaseAuthWithGoogle(idToken: String?) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
