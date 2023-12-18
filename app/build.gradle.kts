@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -18,6 +19,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val baseUrl: String = gradleLocalProperties(rootDir).getProperty("BASE_URL")
+        buildConfigField("String", "BASEURL", "\"$baseUrl\"")
     }
 
     buildTypes {
@@ -33,6 +37,7 @@ android {
     buildFeatures{
         viewBinding = true
         buildConfig = true
+        mlModelBinding = true
     }
 
     compileOptions {
@@ -100,6 +105,12 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth-ktx:22.3.0")
     implementation("com.google.android.gms:play-services-auth:20.7.0")
+
+    // Tensor Flow Lite
+    implementation("org.tensorflow:tensorflow-lite-gpu:2.9.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
 
     // testing
     testImplementation("junit:junit:4.13.2")

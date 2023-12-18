@@ -21,6 +21,7 @@
     <!--Blue-->
     <color name="blue_50">#e8f6fe</color>
     <color name="blue_100">#b6e4fc</color>
+    <color name="blue_100_opacity">#80B6E4FC</color>
     <color name="blue_200">#93d7fa</color>
     <color name="blue_300">#62c5f8</color>
     <color name="blue_400">#43baf6</color>

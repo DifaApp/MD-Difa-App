@@ -1,11 +1,13 @@
 package com.difa.difaapp.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.difa.difaapp.R
 import com.difa.difaapp.databinding.ActivityMainBinding
+import com.difa.difaapp.ui.objdetection.ObjectDetectionActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -18,5 +20,9 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navView.setupWithNavController(navController)
+
+        binding.fabPost.setOnClickListener {
+            startActivity(Intent(this, ObjectDetectionActivity::class.java))
+        }
     }
 }

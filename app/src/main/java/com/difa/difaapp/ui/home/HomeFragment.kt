@@ -17,6 +17,7 @@ import com.difa.difaapp.data.local.entity.Quotes
 import com.difa.difaapp.databinding.FragmentHomeBinding
 import com.difa.difaapp.ui.home.aboutApp.AboutAppActivity
 import com.difa.difaapp.ui.home.adapter.QuotesAdapter
+import com.difa.difaapp.ui.objdetection.ObjectDetectionActivity
 import com.takusemba.spotlight.Spotlight
 import com.takusemba.spotlight.Target
 import com.takusemba.spotlight.shape.RoundedRectangle
@@ -77,6 +78,10 @@ class HomeFragment : Fragment() {
 
         binding.cardInfoApp.setOnClickListener {
             startActivity(Intent(requireContext(), AboutAppActivity::class.java))
+        }
+
+        binding.cardCamera.setOnClickListener {
+            startActivity(Intent(requireContext(), ObjectDetectionActivity::class.java))
         }
     }
 
