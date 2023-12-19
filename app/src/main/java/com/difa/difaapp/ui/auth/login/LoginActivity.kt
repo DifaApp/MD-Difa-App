@@ -10,11 +10,13 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.difa.difaapp.R
+import com.difa.difaapp.customeView.bottomsheet.auth.BottomSheetAuth
 import com.difa.difaapp.data.local.entity.UserGoogle
 import com.difa.difaapp.databinding.ActivityLoginBinding
 import com.difa.difaapp.ui.MainActivity
 import com.difa.difaapp.ui.ViewModelFactory
 import com.difa.difaapp.ui.auth.register.RegisterActivity
+import com.difa.difaapp.utils.BottomSheetAuthType
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -34,6 +36,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var loadingAuth: Dialog
+
+    private lateinit var bottomSheetLogin: BottomSheetAuth
 
     private var resultSignInLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -63,9 +67,11 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         auth = Firebase.auth
+        bottomSheetLogin = BottomSheetAuth(BottomSheetAuthType.LOGIN_TYPE)
 
         binding.tvSignUp.setOnClickListener(this)
         binding.btnLoginWithGoogle.setOnClickListener(this)
+        binding.btnLogin.setOnClickListener(this)
 
         loadingAuth = Dialog(this)
     }
@@ -124,6 +130,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         when(view.id){
             R.id.tv_sign_up -> startActivity(Intent(this, RegisterActivity::class.java))
             R.id.btn_login_with_google -> singInWithGoogle()
+            R.id.btn_login -> bottomSheetLogin.show(supportFragmentManager, "BottomSheetLogin")
         }
     }
 

@@ -10,10 +10,12 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.difa.difaapp.R
+import com.difa.difaapp.customeView.bottomsheet.auth.BottomSheetAuth
 import com.difa.difaapp.data.local.entity.UserGoogle
 import com.difa.difaapp.databinding.ActivityRegisterBinding
 import com.difa.difaapp.ui.MainActivity
 import com.difa.difaapp.ui.ViewModelFactory
+import com.difa.difaapp.utils.BottomSheetAuthType
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -35,6 +37,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private lateinit var loadingAuth: Dialog
+    private lateinit var bottomSheetRegister: BottomSheetAuth
 
     private var resultSignUpLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -64,9 +67,11 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         auth = Firebase.auth
+        bottomSheetRegister = BottomSheetAuth(BottomSheetAuthType.REGISTER_TYPE)
 
         binding.ivBack.setOnClickListener(this)
         binding.btnRegisterGoogle.setOnClickListener(this)
+        binding.btnRegister.setOnClickListener(this)
 
         loadingAuth = Dialog(this)
     }
@@ -125,6 +130,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         when(view.id){
             R.id.iv_back -> finish()
             R.id.btn_register_google -> signUpWithGoogle()
+            R.id.btn_register -> bottomSheetRegister.show(supportFragmentManager, "BottomSheetRegister")
         }
     }
 
