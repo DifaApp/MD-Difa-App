@@ -62,4 +62,10 @@
     <string name="text_about_app_2_desc">1. Pada saat pengguna Difa masuk kedalam aplikasi, sistem akan meminta informasi akun yang harus di isi, untuk pendataan user aktif</string>
     <string name="text_about_app_1_desc_2">2. berikutnya dengan menggunakan kamera di hanphone yang diarahkan ke difabel, difa dapat menerjamahkan bahasa isyarat SIBI</string>
     <string name="text_kontak_kami">Kontak Kami</string>
+    <string name="text_title_bs_auth_register">Yey, Kamu Berhasil Register</string>
+    <string name="text_sub_title_bs_auth_register">Yey kamu berhasil membuat account difa, yu sekarang login</string>
+    <string name="text_login">Login</string>
+
+    <string name="text_title_bs_auth_login">Yey, Email Password kamu Valid</string>
+    <string name="text_sub_title_bs_auth_login">Yuk Tekan masuk dan mulai komunikasi dengan teman difa mu!</string>
 </resources>

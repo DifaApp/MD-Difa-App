@@ -6,6 +6,7 @@
     <color name="transparent">#00000000</color>
     <color name="BLACK_TRANSPARENT">#57000000</color>
     <color name="spotlightBackground">#D9000000</color>
+    <color name="taskColorFinish">#1BA96E</color>
 
     <!--Yellow-->
     <color name="yellow_50">#fefae8</color>
