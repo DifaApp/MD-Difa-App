@@ -5,13 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@color/white"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <View
+        android:id="@+id/view_line"
+        android:layout_width="53dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -45,7 +56,7 @@
                 android:id="@+id/card_cancle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="20dp"
                 android:foreground="@drawable/bg_cancle_logout"
                 android:layout_marginBottom="20dp"
@@ -57,8 +68,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/red_google_btn"
-                    style="@style/Text.Heading.Level4"
-                    android:text="@string/text_logout"
+                    style="@style/Text.Body.Medium"
+                    android:text="Batalkan"
                     android:fontFamily="@font/nunitosansbold"
                     android:layout_gravity="center"
                     android:gravity="center"/>
@@ -67,7 +78,7 @@
                 android:id="@+id/card_logout"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="65dp"
+                android:layout_height="55dp"
                 app:cardBackgroundColor="@color/red_google_btn"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
@@ -78,7 +89,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    style="@style/Text.Heading.Level4"
+                    style="@style/Text.Body.Medium"
                     android:text="@string/text_logout"
                     android:fontFamily="@font/nunitosansbold"
                     android:layout_gravity="center"
