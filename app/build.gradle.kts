@@ -20,8 +20,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        val baseUrl: String = gradleLocalProperties(rootDir).getProperty("BASE_URL")
-        buildConfigField("String", "BASEURL", "\"$baseUrl\"")
+        val baseUrlAuth: String = gradleLocalProperties(rootDir).getProperty("BASE_URL_AUTH")
+        buildConfigField("String", "BASE_URL_AUTH", "\"$baseUrlAuth\"")
+
+        val baseUrlRecom: String = gradleLocalProperties(rootDir).getProperty("BASE_URL_RECOM")
+        buildConfigField("String", "BASE_URL_RECOM", "\"$baseUrlRecom\"")
     }
 
     buildTypes {

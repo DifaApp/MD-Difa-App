@@ -2,13 +2,15 @@ package com.difa.difaapp.data.repository
 
 import com.difa.difaapp.data.local.entity.User
 import com.difa.difaapp.data.local.entity.UserGoogle
-import com.difa.difaapp.data.remote.ApiService
+import com.difa.difaapp.data.remote.apiservices.ApiServiceAuth
+import com.difa.difaapp.data.remote.apiservices.ApiServiceRecommendation
 import com.difa.difaapp.data.sharedpref.AppPreferences
 import com.difa.difaapp.data.sharedpref.AuthPreferences
 import kotlinx.coroutines.flow.Flow
 
 class AppRepository(
-    private val apiService: ApiService,
+    private val apiServiceAuth: ApiServiceAuth,
+    private val apiServiceRecom: ApiServiceRecommendation,
     private val prefApp: AppPreferences,
     private val prefAuth: AuthPreferences,
 ) {
@@ -46,12 +48,14 @@ class AppRepository(
     companion object{
         private var INSTANCE: AppRepository? = null
         fun getInstance(
-            apiService: ApiService,
+            apiServiceAuth: ApiServiceAuth,
+            apiServiceRecom: ApiServiceRecommendation,
             prefApp: AppPreferences,
             prefAuth: AuthPreferences
         ) : AppRepository = INSTANCE ?: synchronized(this){
             INSTANCE ?: AppRepository(
-                apiService,
+                apiServiceAuth,
+                apiServiceRecom,
                 prefApp,
                 prefAuth
             )

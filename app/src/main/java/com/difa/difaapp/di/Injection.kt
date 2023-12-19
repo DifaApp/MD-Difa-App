@@ -12,9 +12,11 @@ object Injection {
     fun providerRepository(context: Context): AppRepository {
         val prefApp = AppPreferences.getInstance(context.appDataStore)
         val prefAuth = AuthPreferences.getInstance(context.authDataStore)
-        val apiService = ApiConfig.getInstance()
+        val apiServiceAuth = ApiConfig.apiServiceAuth
+        val apiServiceRecom = ApiConfig.apiServiceRecomendation
         return AppRepository(
-            apiService = apiService,
+            apiServiceAuth = apiServiceAuth,
+            apiServiceRecom = apiServiceRecom,
             prefApp = prefApp,
             prefAuth = prefAuth
         )
