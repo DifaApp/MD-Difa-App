@@ -4,7 +4,7 @@
     android:id="@+id/cons_bs_berhasil_register"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_bs_berhasil_register"
+    android:background="@color/blue_500"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     android:orientation="vertical">
 
@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieAnimationCheckList"
+            android:id="@+id/lottieAnimationAuth"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
@@ -27,35 +27,36 @@
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="false"
             app:lottie_loop="false"
-            app:lottie_rawRes="@raw/anim_success" />
+            app:lottie_rawRes="@raw/checklist_bs" />
 
         <TextView
+            android:id="@+id/tv_title_bs_auth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yey, Kamu Berhasil Register"
+            android:text="@string/text_title_bs_auth_register"
             style="@style/Text.Heading.Level4"
             android:textAlignment="center"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/white"/>
 
         <TextView
-            android:id="@+id/tvSubTitle"
+            android:id="@+id/tv_sub_title_bs_auth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Yey kamu berhasil membuat account difa, yu sekarang login"
+            android:text="@string/text_sub_title_bs_auth_register"
             style="@style/Text.Body.Normal"
             android:textAlignment="center"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/white"/>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_to_login"
+            android:id="@+id/card_auth"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
-            app:cardBackgroundColor="@color/yellow_500"
+            android:layout_height="55dp"
+            app:cardBackgroundColor="@color/white"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:layout_marginStart="25dp"
@@ -63,14 +64,15 @@
             app:cardCornerRadius="10dp">
 
             <TextView
+                android:id="@+id/tv_bs_btn_auth"
+                style="@style/Text.Body.Medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                style="@style/Text.Heading.Level4"
-                android:text="Login"
-                android:fontFamily="@font/nunitosansbold"
                 android:layout_gravity="center"
-                android:gravity="center"/>
+                android:fontFamily="@font/nunitosansbold"
+                android:gravity="center"
+                android:text="@string/text_login"
+                android:textColor="@color/blue_300" />
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
