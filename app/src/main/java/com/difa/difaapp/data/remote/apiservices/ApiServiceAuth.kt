@@ -40,7 +40,7 @@ interface ApiServiceAuth {
 
     @GET("auth/user/{userId}")
     suspend fun detailProfile(
-        @Path("userId") userId: String
+        @Path("userId") userId: Int
     ) : DetailProfileResponse
 
     @FormUrlEncoded

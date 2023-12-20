@@ -68,4 +68,8 @@
 
     <string name="text_title_bs_auth_login">Yey, Email Password kamu Valid</string>
     <string name="text_sub_title_bs_auth_login">Yuk Tekan masuk dan mulai komunikasi dengan teman difa mu!</string>
+
+    <string name="text_title_bs_auth_update">Yey, Kamu Berhasil Update Profile kamu</string>
+    <string name="text_sub_title_bs_auth_update">Yey Sekarang Account sudah lengkap</string>
+    <string name="text_kembali">Kembali</string>
 </resources>
