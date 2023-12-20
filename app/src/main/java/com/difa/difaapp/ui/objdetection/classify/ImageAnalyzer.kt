@@ -15,7 +15,7 @@ import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.model.Model
 import kotlin.random.Random
 
-typealias RecognitionListener = (recognition: List<Recognition>) -> Unit
+typealias RecognitionListener = (recognition: Recognition) -> Unit
 class ImageAnalyzer(context: Context, private val listener: RecognitionListener) : ImageAnalysis.Analyzer{
 
     private val difaModel: DifaModel by lazy {
@@ -49,13 +49,17 @@ class ImageAnalyzer(context: Context, private val listener: RecognitionListener)
                 sortByDescending { it.score } // Sort with highest confidence first
             }.take(MAX_RESULT_DISPLAY) // take the top results
 
+        var recognition : Recognition
+
         // TODO 4: Converting the top probability items into a list of recognitions
         for (output in outputs) {
-            items.add(Recognition(output.label, output.score))
+            if(output.score > 0.85f ){
+                recognition = Recognition(output.label, output.score)
+                listener(recognition)
+            }
         }
 
         // Return the result
-        listener(items.toList())
 
         // Close the image,this tells CameraX to feed the next image to the analyzer
         image.close()

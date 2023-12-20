@@ -27,7 +27,6 @@ private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA) // permis
 class ObjectDetectionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityObjectDetectionBinding
-
     private lateinit var preview: Preview // Preview use case, fast, responsive view of the camera
     private lateinit var imageAnalyzer: ImageAnalysis // Analysis use case, for running ML code
     private lateinit var camera: Camera
@@ -67,6 +66,10 @@ class ObjectDetectionActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN
             )
+        }
+
+        viewModel.recognitionList.observe(this){result->
+            binding.tvClassify.text = result.label
         }
     }
 
