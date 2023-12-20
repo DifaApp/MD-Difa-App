@@ -1,7 +1,7 @@
 package com.difa.difaapp.data.local.entity
 
 data class User(
-    val id: String,
+    val id: Int,
     val name: String,
     val email: String,
     val birtDate: String,
