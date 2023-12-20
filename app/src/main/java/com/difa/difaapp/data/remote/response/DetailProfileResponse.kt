@@ -5,35 +5,35 @@ import com.google.gson.annotations.SerializedName
 data class DetailProfileResponse(
 
 	@field:SerializedName("error")
-	val error: Boolean? = null,
+	val error: Boolean,
 
 	@field:SerializedName("message")
-	val message: String? = null,
+	val message: String,
 
 	@field:SerializedName("user")
-	val user: User? = null
+	val user: User
 )
 
 data class User(
 
 	@field:SerializedName("profilePicture")
-	val profilePicture: Any? = null,
+	val profilePicture: String,
 
 	@field:SerializedName("password")
-	val password: String? = null,
+	val password: String,
 
 	@field:SerializedName("birthdate")
-	val birthdate: String? = null,
+	val birthdate: String,
 
 	@field:SerializedName("gender")
-	val gender: String? = null,
+	val gender: String,
 
 	@field:SerializedName("name")
-	val name: String? = null,
+	val name: String,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("email")
-	val email: String? = null
+	val email: String
 )

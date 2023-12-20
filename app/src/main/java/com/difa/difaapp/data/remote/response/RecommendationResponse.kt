@@ -5,35 +5,35 @@ import com.google.gson.annotations.SerializedName
 data class RecommendationResponse(
 
 	@field:SerializedName("error")
-	val error: Boolean? = null,
+	val error: Boolean,
 
 	@field:SerializedName("message")
-	val message: String? = null,
+	val message: String,
 
 	@field:SerializedName("recommendations")
-	val recommendations: List<RecommendationsItem?>? = null
+	val recommendations: List<RecommendationsItem>
 )
 
 data class RecommendationsItem(
 
 	@field:SerializedName("url_video")
-	val urlVideo: String? = null,
+	val urlVideo: String,
 
 	@field:SerializedName("createdAt")
-	val createdAt: String? = null,
+	val createdAt: String,
 
 	@field:SerializedName("description")
-	val description: String? = null,
+	val description: String,
 
 	@field:SerializedName("id")
-	val id: Int? = null,
+	val id: Int,
 
 	@field:SerializedName("title")
-	val title: String? = null,
+	val title: String,
 
 	@field:SerializedName("url_image")
-	val urlImage: String? = null,
+	val urlImage: String,
 
 	@field:SerializedName("updatedAt")
-	val updatedAt: String? = null
+	val updatedAt: String?
 )
