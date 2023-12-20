@@ -61,6 +61,15 @@ class BottomSheetAuth(private val type: BottomSheetAuthType): BottomSheetDialogF
                     requireActivity().finish()
                 }
             }
+            BottomSheetAuthType.UPDATE_TYPE -> {
+                tvTitleBsAuth.text = requireActivity().getString(R.string.text_title_bs_auth_update)
+                tvSubTitleBsAuth.text = requireActivity().getString(R.string.text_sub_title_bs_auth_update)
+                tvBtnBsAuth.text = requireActivity().getString(R.string.text_lewati)
+
+                cardAuth.setOnClickListener {
+                    requireActivity().finish()
+                }
+            }
         }
 
         Handler(Looper.getMainLooper()).postDelayed(
