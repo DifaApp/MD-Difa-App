@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     app:cardCornerRadius="10dp"
     app:cardElevation="4dp"
+    android:backgroundTint="@color/white"
+    app:strokeColor="@color/purple_500"
+    app:strokeWidth="1.5dp"
     app:cardMaxElevation="4dp"
     app:cardUseCompatPadding="true">
 
@@ -19,7 +22,7 @@
             android:layout_height="75dp"
             android:src="@drawable/dummy_image"
             android:layout_marginVertical="20dp"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -41,7 +44,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_right_arrow"
-            android:layout_marginEnd="15dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/iv_image_sibi"
             app:layout_constraintBottom_toBottomOf="@id/iv_image_sibi"
@@ -49,4 +52,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

@@ -8,6 +8,9 @@ import com.difa.difaapp.data.repository.AppRepository
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository: AppRepository): ViewModel() {
+
+    fun login(email: String, password: String) = repository.login(email, password)
+
     fun isUserLoginWithGoogle(isLoginWithGoogle: Boolean){
         viewModelScope.launch {
             repository.saveIsUserGoogle(true)

@@ -11,7 +11,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import com.difa.difaapp.R
 import com.difa.difaapp.customeView.bottomsheet.auth.BottomSheetAuth
+import com.difa.difaapp.data.Result
+import com.difa.difaapp.data.local.entity.User
 import com.difa.difaapp.data.local.entity.UserGoogle
+import com.difa.difaapp.data.remote.response.LoginResponse
 import com.difa.difaapp.databinding.ActivityLoginBinding
 import com.difa.difaapp.ui.MainActivity
 import com.difa.difaapp.ui.ViewModelFactory
@@ -21,6 +24,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -119,8 +123,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 avatar = firebaseUser.photoUrl.toString()
             )
             viewModel.setUserGoogle(user)
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            bottomSheetLogin.show(supportFragmentManager, "BottomSheetLogin")
         }else {
 
         }
@@ -130,8 +133,55 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         when(view.id){
             R.id.tv_sign_up -> startActivity(Intent(this, RegisterActivity::class.java))
             R.id.btn_login_with_google -> singInWithGoogle()
-            R.id.btn_login -> bottomSheetLogin.show(supportFragmentManager, "BottomSheetLogin")
+            R.id.btn_login -> {
+                if(binding.emailEditText.toString().isEmpty() || binding.passwordEditText.toString().isEmpty()){
+                    Snackbar.make(binding.root, "Tolong isi email anda terlebih dahulu", Snackbar.LENGTH_LONG).show()
+                }else {
+                    val email = binding.emailEditText.text.toString()
+                    val password = binding.passwordEditText.text.toString()
+                    userLogin(email, password)
+                }
+                Log.d(TAG, "onClick: ")
+            }
         }
+    }
+
+    private fun userLogin(email: String, password: String) {
+        viewModel.login(email, password).observe(this){result->
+            if(result != null){
+                when(result){
+                    is Result.Loading -> {
+                        showDialog()
+                    }
+                    is Result.Success -> {
+                        dismissLoading()
+                        bottomSheetLogin.show(supportFragmentManager, "BottomSheetLogin")
+                        setUserNormal(result)
+                    }
+                    is Result.Error -> {
+                        dismissLoading()
+                        Snackbar.make(binding.root, "Terjadi Error", Snackbar.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setUserNormal(result: Result.Success<LoginResponse>) {
+        val userId = result.data.loginResult.userId
+        val userName = result.data.loginResult.name
+        val userEmail = binding.emailEditText.text.toString()
+        val token = result.data.loginResult.token
+        val user = User(
+            id = userId,
+            name = userName,
+            email = userEmail,
+            gender = "",
+            birtDate = "",
+            avatar = "",
+            token = token
+        )
+        viewModel.setUserNormal(user)
     }
 
     companion object{

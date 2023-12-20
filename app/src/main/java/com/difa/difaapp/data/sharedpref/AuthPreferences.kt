@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.difa.difaapp.data.local.entity.User
@@ -16,7 +17,8 @@ val Context.authDataStore: DataStore<Preferences> by preferencesDataStore(name =
 class AuthPreferences private constructor(private val authDataStore: DataStore<Preferences>) {
     private val userToken = stringPreferencesKey(TOKEN_USER_KEY)
     private val userName = stringPreferencesKey(USER_NAME_KEY)
-    private val userUid = stringPreferencesKey(UID_USER_KEY)
+    private val userIdNormal = intPreferencesKey(UID_USER_KEY)
+    private val userIdGoogle = stringPreferencesKey(UID_USER_KEY)
     private val userAvatar = stringPreferencesKey(AVATAR_USER_KEY)
     private val userEmail = stringPreferencesKey(EMAIL_USER_KEY)
 
@@ -28,7 +30,7 @@ class AuthPreferences private constructor(private val authDataStore: DataStore<P
     fun getSessionUserNormalLogin(): Flow<User> {
         return authDataStore.data.map {pref->
             User(
-                id = pref[userUid] ?: "",
+                id = pref[userIdNormal] ?: 0,
                 name = pref[userName] ?: "",
                 email = pref[userEmail] ?: "",
                 birtDate = pref[userBirthDay] ?: "",
@@ -41,7 +43,7 @@ class AuthPreferences private constructor(private val authDataStore: DataStore<P
 
     suspend fun setSessionUserNormalLogin(user: User){
         authDataStore.edit {pref->
-            pref[userUid] = user.id
+            pref[userIdNormal] = user.id
             pref[userName] = user.name
             pref[userEmail] = user.email
             pref[userBirthDay] = user.birtDate
@@ -54,7 +56,7 @@ class AuthPreferences private constructor(private val authDataStore: DataStore<P
     fun getSessionUserGoogleLogin(): Flow<UserGoogle> {
         return authDataStore.data.map {pref->
             UserGoogle(
-                id = pref[userUid] ?: "",
+                id = pref[userIdGoogle] ?: "",
                 name = pref[userName] ?: "",
                 email = pref[userEmail] ?: "",
                 avatar = pref[userAvatar] ?: ""
@@ -64,7 +66,7 @@ class AuthPreferences private constructor(private val authDataStore: DataStore<P
 
     suspend fun setSessionUserGoogleLogin(user: UserGoogle){
         authDataStore.edit {pref->
-            pref[userUid] = user.id
+            pref[userIdGoogle] = user.id
             pref[userName] = user.name
             pref[userEmail] = user.email
             pref[userAvatar] = user.avatar ?: ""

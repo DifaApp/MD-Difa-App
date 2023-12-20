@@ -1,8 +1,10 @@
 package com.difa.difaapp.ui.home
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,22 +13,35 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.difa.difaapp.R
 import com.difa.difaapp.data.local.entity.Quotes
 import com.difa.difaapp.databinding.FragmentHomeBinding
+import com.difa.difaapp.ui.ViewModelFactory
 import com.difa.difaapp.ui.home.aboutApp.AboutAppActivity
 import com.difa.difaapp.ui.home.adapter.QuotesAdapter
+import com.difa.difaapp.ui.home.adapter.RecommendationAdapter
 import com.difa.difaapp.ui.objdetection.ObjectDetectionActivity
 import com.takusemba.spotlight.Spotlight
 import com.takusemba.spotlight.Target
 import com.takusemba.spotlight.shape.RoundedRectangle
+import com.difa.difaapp.data.Result
+import com.difa.difaapp.data.local.entity.Recommendation
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var quotesAdapter: QuotesAdapter
+    private lateinit var recommendationAdapter: RecommendationAdapter
     private lateinit var listDot : ArrayList<TextView>
+    private lateinit var loadingHome: Dialog
+
+    private val viewModel by viewModels<HomeViewModel> {
+        ViewModelFactory.getInstance(requireContext().applicationContext)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,6 +80,29 @@ class HomeFragment : Fragment() {
         listDot = ArrayList()
         setQuotesIndicator(data)
 
+        loadingHome = Dialog(requireActivity())
+
+
+        viewModel.getAllRecommendation().observe(requireActivity()){result ->
+            if (result != null) {
+                when (result) {
+                    is Result.Loading -> {
+                        showDialog()
+                    }
+
+                    is Result.Success -> {
+                        dismissLoading()
+                        setupRecommendation(result.data)
+                    }
+
+                    is Result.Error -> {
+                        dismissLoading()
+                        Log.d("HomeFragment", "onViewCreated: ${result.error}")
+                    }
+                }
+            }
+        }
+
         binding.vpQuotes.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -85,6 +123,14 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setupRecommendation(data: List<Recommendation>) {
+        recommendationAdapter = RecommendationAdapter()
+        recommendationAdapter.submitList(data)
+        val layoutManager = LinearLayoutManager(requireActivity())
+        binding.rvSibiLearn.adapter = recommendationAdapter
+        binding.rvSibiLearn.layoutManager = layoutManager
+    }
+
     private fun selectedDots(position: Int, data: List<Quotes>) {
         for(i in 0 until data.size){
             if(i == position){
@@ -102,6 +148,19 @@ class HomeFragment : Fragment() {
             listDot[i].textSize = 15f
             binding.dotsIndicator.addView(listDot[i])
         }
+    }
+
+    private fun dismissLoading() {
+        if(loadingHome.isShowing){
+            loadingHome.dismiss()
+        }
+    }
+
+    private fun showDialog() {
+        loadingHome.setContentView(R.layout.bg_loading_auth)
+        loadingHome.setCancelable(false)
+        loadingHome.setCanceledOnTouchOutside(false)
+        loadingHome.show()
     }
 
     private fun setSpotlight(){

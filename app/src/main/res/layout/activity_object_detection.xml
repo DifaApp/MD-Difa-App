@@ -12,21 +12,12 @@
         android:layout_height="match_parent"
         app:scaleType="fillStart"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="@drawable/bg_obj_detector"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_gravity="center"/>
 
     <LinearLayout
         android:id="@+id/ll_root_classify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue_100_opacity"
+        android:background="@color/white"
         android:orientation="vertical"
         android:gravity="center_vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,27 +25,47 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_classify_desc"
-            style="@style/Text.Body.Medium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:layout_marginVertical="20dp"
-            android:text="Silahkan Arahkan Ponsel Ke Teman Difamu" />
-
-        <TextView
             android:id="@+id/tv_classify"
-            style="@style/Text.Heading.Level3"
+            style="@style/Text.Heading.Level1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/blue_500"
             android:textAlignment="center"
-            android:layout_marginBottom="20dp"
+            android:layout_marginVertical="10dp"
             android:layout_gravity="center_horizontal"
             android:text="A" />
 
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bs_berhasil_register"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="53dp"
+            android:layout_height="4dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/black"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tv_classify_desc"
+            style="@style/Text.Body.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue_500"
+            android:textAlignment="center"
+            android:layout_marginVertical="20dp"
+            android:text="Silahkan Arahkan Ponsel Ke Teman Difamu" />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

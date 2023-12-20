@@ -19,5 +19,7 @@ class RegisterViewModel(private val repository: AppRepository) : ViewModel() {
             repository.saveIsUserGoogle(true)
         }
     }
+
+    fun register(name: String, email: String, password: String) = repository.registerUser(name, email, password)
 }
 

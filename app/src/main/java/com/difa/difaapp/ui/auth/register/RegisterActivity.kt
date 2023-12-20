@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.difa.difaapp.R
 import com.difa.difaapp.customeView.bottomsheet.auth.BottomSheetAuth
 import com.difa.difaapp.data.local.entity.UserGoogle
@@ -25,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
+import com.difa.difaapp.data.Result
+import com.google.android.material.snackbar.Snackbar
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityRegisterBinding
@@ -74,6 +77,28 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         binding.btnRegister.setOnClickListener(this)
 
         loadingAuth = Dialog(this)
+
+    }
+
+
+    private fun userRegister(name: String, email: String, password: String) {
+        viewModel.register(name,email,password).observe(this) {result->
+            if(result != null){
+                when(result){
+                    is Result.Loading -> {
+                        showDialog()
+                    }
+                    is Result.Success -> {
+                        dismissLoading()
+                        bottomSheetRegister.show(supportFragmentManager, "BottomSheetRegister")
+                    }
+                    is Result.Error -> {
+                        dismissLoading()
+                        Snackbar.make(binding.root, "Terjadi Error", Snackbar.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
     }
 
     private fun signUpWithGoogle() {
@@ -121,8 +146,6 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             viewModel.setUserGoogle(user)
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        }else {
-
         }
     }
 
@@ -130,7 +153,17 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         when(view.id){
             R.id.iv_back -> finish()
             R.id.btn_register_google -> signUpWithGoogle()
-            R.id.btn_register -> bottomSheetRegister.show(supportFragmentManager, "BottomSheetRegister")
+            R.id.btn_register -> {
+                if(binding.nameEditText.toString().isEmpty() || binding.emailEditText.toString().isEmpty() || binding.passwordEditText.toString().isEmpty()){
+                    Snackbar.make(binding.root, "Tolong isi email anda terlebih dahulu", Snackbar.LENGTH_LONG).show()
+                }else {
+                    val email = binding.emailEditText.text.toString()
+                    val password = binding.passwordEditText.text.toString()
+                    val name = binding.nameEditText.text.toString()
+                    userRegister(name, email, password)
+                }
+                Log.d(TAG, "onClick: ")
+            }
         }
     }
 
