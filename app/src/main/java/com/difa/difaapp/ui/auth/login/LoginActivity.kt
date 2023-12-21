@@ -170,14 +170,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     private fun setUserNormal(result: Result.Success<LoginResponse>) {
         val userId = result.data.loginResult.userId
         val userName = result.data.loginResult.name
-        val userEmail = binding.emailEditText.text.toString()
+        val userEmail = result.data.loginResult.email
         val token = result.data.loginResult.token
         val user = User(
             id = userId,
             name = userName,
             email = userEmail,
             gender = "",
-            birtDate = "",
+            birtDate = "0000-00-00",
             avatar = "",
             token = token
         )

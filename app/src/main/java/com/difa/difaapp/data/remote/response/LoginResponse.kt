@@ -19,6 +19,9 @@ data class LoginResult(
 	@field:SerializedName("name")
 	val name: String,
 
+	@field:SerializedName("email")
+	val email: String,
+
 	@field:SerializedName("userId")
 	val userId: Int,
 

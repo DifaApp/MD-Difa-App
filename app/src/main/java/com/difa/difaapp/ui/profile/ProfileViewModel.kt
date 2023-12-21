@@ -22,4 +22,10 @@ class ProfileViewModel(private val repository: AppRepository) : ViewModel(){
             repository.setSessionNormalLogin(user)
         }
     }
+
+    suspend fun clearSession(){
+        viewModelScope.launch {
+            repository.clearTokenSession()
+        }
+    }
 }

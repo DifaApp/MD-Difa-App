@@ -124,7 +124,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecommendation(data: List<Recommendation>) {
-        recommendationAdapter = RecommendationAdapter()
+        recommendationAdapter = RecommendationAdapter(requireActivity())
         recommendationAdapter.submitList(data)
         val layoutManager = LinearLayoutManager(requireActivity())
         binding.rvSibiLearn.adapter = recommendationAdapter

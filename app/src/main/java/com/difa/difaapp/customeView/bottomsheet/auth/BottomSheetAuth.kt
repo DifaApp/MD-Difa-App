@@ -64,10 +64,10 @@ class BottomSheetAuth(private val type: BottomSheetAuthType): BottomSheetDialogF
             BottomSheetAuthType.UPDATE_TYPE -> {
                 tvTitleBsAuth.text = requireActivity().getString(R.string.text_title_bs_auth_update)
                 tvSubTitleBsAuth.text = requireActivity().getString(R.string.text_sub_title_bs_auth_update)
-                tvBtnBsAuth.text = requireActivity().getString(R.string.text_lewati)
+                tvBtnBsAuth.text = requireActivity().getString(R.string.text_kembali)
 
                 cardAuth.setOnClickListener {
-                    requireActivity().finish()
+                    dismiss()
                 }
             }
         }

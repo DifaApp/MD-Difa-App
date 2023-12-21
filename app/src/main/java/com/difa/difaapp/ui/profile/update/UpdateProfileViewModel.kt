@@ -10,16 +10,7 @@ import com.difa.difaapp.data.repository.AppRepository
 import kotlinx.coroutines.launch
 
 class UpdateProfileViewModel(private val repository: AppRepository): ViewModel(){
-
-    val gender = MutableLiveData<String>()
-    var birtDate = MutableLiveData<String>()
     fun getSessionNormalUser() = repository.getNormalUser().asLiveData()
-
-    fun setUserNormal(user: User){
-        viewModelScope.launch {
-            repository.setSessionNormalLogin(user)
-        }
-    }
 
     fun updateProfile(name: String, email:String, gender: String, birtDay: String, token: String) = repository.updateProfile(
         name, email, gender, birtDay, token
