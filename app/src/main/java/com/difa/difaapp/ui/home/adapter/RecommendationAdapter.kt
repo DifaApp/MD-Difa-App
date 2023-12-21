@@ -1,6 +1,9 @@
 package com.difa.difaapp.ui.home.adapter
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.difa.difaapp.data.local.entity.Recommendation
 import com.difa.difaapp.databinding.ItemLearnSibiBinding
 
-class RecommendationAdapter: ListAdapter<Recommendation, RecommendationAdapter.RecommendationViewHolder>(DIFF_CALLBACK) {
+class RecommendationAdapter(private val context: Context): ListAdapter<Recommendation, RecommendationAdapter.RecommendationViewHolder>(DIFF_CALLBACK) {
 
     class RecommendationViewHolder(val binding: ItemLearnSibiBinding):RecyclerView.ViewHolder(binding.root){
 
@@ -34,6 +37,12 @@ class RecommendationAdapter: ListAdapter<Recommendation, RecommendationAdapter.R
             .into(holder.binding.ivImageSibi)
         holder.apply {
             binding.tvChannel.text = recommendationItem.title
+            binding.idRootRecom.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(recommendationItem.urlVideo));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.setPackage("com.google.android.youtube")
+                context.startActivity(intent)
+            }
         }
     }
 

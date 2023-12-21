@@ -13,16 +13,18 @@
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/id_root_recom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_image_sibi"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="75dp"
             android:src="@drawable/dummy_image"
             android:layout_marginVertical="20dp"
             android:layout_marginStart="20dp"
+            style="@style/CircleShape"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
@@ -41,14 +43,14 @@
 
         <ImageView
             android:id="@+id/iv_rigth_arrow"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_right_arrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginEnd="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/iv_image_sibi"
+            android:src="@drawable/ic_right_arrow"
             app:layout_constraintBottom_toBottomOf="@id/iv_image_sibi"
-            app:layout_constraintStart_toEndOf="@id/tv_channel"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_channel"
+            app:layout_constraintTop_toTopOf="@id/iv_image_sibi" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
