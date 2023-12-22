@@ -17,6 +17,8 @@ import com.difa.difaapp.customeView.bottomsheet.pickdate.ViewModelBottomSheetDat
 import com.difa.difaapp.customeView.bottomsheet.pickgender.BottomSheetPickGender
 import com.difa.difaapp.customeView.bottomsheet.pickgender.ViewModelBottomSheetGender
 import com.difa.difaapp.data.Result
+import com.difa.difaapp.data.local.entity.User
+import com.difa.difaapp.data.remote.response.DetailProfileResponse
 import com.difa.difaapp.databinding.ActivityUpdateProfileBinding
 import com.difa.difaapp.ui.ViewModelFactory
 import com.difa.difaapp.utils.BottomSheetAuthType
@@ -35,6 +37,7 @@ class UpdateProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var bottomSheetPickGender: BottomSheetPickGender
     private lateinit var bottomSheetPickBirtDay: BottomSheetPickDate
+    private lateinit var bottomSheetUpdateProfile: BottomSheetAuth
 
     private lateinit var loadingUpdateProfile: Dialog
 
@@ -45,39 +48,16 @@ class UpdateProfileActivity : AppCompatActivity(), View.OnClickListener {
 
         bottomSheetPickGender = BottomSheetPickGender()
         bottomSheetPickBirtDay = BottomSheetPickDate()
+        bottomSheetUpdateProfile = BottomSheetAuth(BottomSheetAuthType.UPDATE_TYPE)
 
         bsViewModel = ViewModelProvider(this).get(ViewModelBottomSheetGender::class.java)
         bsVewModelDate = ViewModelProvider(this).get(ViewModelBottomSheetDate::class.java)
 
         loadingUpdateProfile = Dialog(this)
 
-        binding.ivBackProfileAccount.setOnClickListener(this)
-        binding.llJenisKel.setOnClickListener(this)
-        binding.llTglLahir.setOnClickListener(this)
-        binding.btnUpdateProfile.setOnClickListener(this)
-
-        val format = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-
-        viewModel.getSessionNormalUser().observe(this){ user->
-            binding.emailEditText.setText(user.email)
-            binding.namaEditText.setText(user.name)
-
-            if (!user.gender.isEmpty()){
-                binding.tvJenisKel.text = user.gender
-            }else {
-                binding.tvJenisKel.text = "-"
-            }
-
-            val date = format.parse(user.birtDate)
-            val birthDateString = format.format(date)
-
-            if (!user.birtDate.isEmpty()){
-                binding.tvTglLahir.text = birthDateString
-            }else {
-                binding.tvTglLahir.text = "-"
-            }
-
-
+        val user = intent.getParcelableExtra<User>(USER_KEY)
+        if(user != null){
+            setDataUser(user)
         }
 
         bsViewModel.gender.observe(this, Observer { result->
@@ -87,23 +67,64 @@ class UpdateProfileActivity : AppCompatActivity(), View.OnClickListener {
         bsVewModelDate.selectedDate.observe(this, Observer {result->
             binding.tvTglLahir.text = result
         })
+
+        binding.ivBackProfileAccount.setOnClickListener(this)
+        binding.llJenisKel.setOnClickListener(this)
+        binding.llTglLahir.setOnClickListener(this)
+
+    }
+
+    private fun setDataUser(user: User) {
+        binding.namaEditText.setText(user.name)
+        binding.emailEditText.setText(user.email)
+
+        binding.tvJenisKel.text = if(user.gender.isEmpty()) "-" else user.gender
+        binding.tvTglLahir.text = if(user.birtDate.isEmpty()) "-" else user.birtDate
+
+        binding.btnUpdateProfile.setOnClickListener{
+            val checkEmail = binding.emailEditText.text.toString()
+            val checkName = binding.namaEditText.text.toString()
+            val checkGender = binding.tvJenisKel.text.toString()
+            val checkDate = binding.tvTglLahir.text.toString()
+            if (checkEmail.isEmpty() || checkName.isEmpty() || checkGender.equals("-") || checkDate.equals("-")){
+                Snackbar.make(binding.root, "Tolong Isikan Inputan Dengan Benar", Snackbar.LENGTH_LONG).show()
+            }else {
+                viewModel.updateProfile(
+                    checkName, checkEmail, checkGender, checkDate, user.token
+                ).observe(this){result->
+                    if(result != null){
+                        when(result){
+                            is Result.Loading -> {
+                                showDialog()
+                            }
+                            is Result.Success -> {
+                                dismissLoading()
+                                val dataUser = User(
+                                    user.id,
+                                    checkName,
+                                    checkEmail,
+                                    checkDate,
+                                    checkGender,
+                                    "",
+                                    user.token
+                                )
+                                updateDataUser(dataUser)
+                                bottomSheetUpdateProfile.show(supportFragmentManager, "bottomSheetUpdateProfile")
+                            }
+                            is Result.Error -> {
+                                dismissLoading()
+                                Snackbar.make(binding.root, "Terjadi Error", Snackbar.LENGTH_LONG).show()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun dismissLoading() {
         if(loadingUpdateProfile.isShowing){
             loadingUpdateProfile.dismiss()
-        }
-    }
-
-    private fun alertDialog(){
-        AlertDialog.Builder(this).apply {
-            setTitle(getString(R.string.text_title_bs_auth_update))
-            setMessage(getString(R.string.text_sub_title_bs_auth_update))
-            setPositiveButton(getString(R.string.text_kembali)) { _, _ ->
-                finish()
-            }
-            create()
-            show()
         }
     }
 
@@ -125,41 +146,15 @@ class UpdateProfileActivity : AppCompatActivity(), View.OnClickListener {
             R.id.ll_tgl_lahir -> {
                 bottomSheetPickBirtDay.show(supportFragmentManager, "BottomSheetPickDate")
             }
-            R.id.btn_update_profile -> {
-                val checkEmail = binding.emailEditText.text.toString()
-                val checkName = binding.namaEditText.text.toString()
-                val checkGender = binding.tvJenisKel.text.toString()
-                val checkDate = binding.tvTglLahir.text.toString()
-                if (checkEmail.isEmpty() || checkName.isEmpty() || checkGender.equals("-") || checkDate.equals("-")){
-                    Snackbar.make(binding.root, "Tolong Isikan Inputan Dengan Benar", Snackbar.LENGTH_LONG).show()
-                }else {
-                    viewModel.getSessionNormalUser().observe(this){user->
-                        viewModel.updateProfile(
-                            checkName, checkEmail, checkGender, checkDate, user.token
-                        ).observe(this){result->
-                            if(result != null){
-                                when(result){
-                                    is Result.Loading -> {
-                                        showDialog()
-                                    }
-                                    is Result.Success -> {
-                                        dismissLoading()
-                                        alertDialog()
-                                    }
-                                    is Result.Error -> {
-                                        dismissLoading()
-                                        Snackbar.make(binding.root, "Terjadi Error", Snackbar.LENGTH_LONG).show()
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
+    }
+
+    private fun updateDataUser(dataUser: User) {
+        viewModel.setUserNormal(dataUser)
     }
 
     companion object{
         const val TAG = "UpdateProfileActivity"
+        const val USER_KEY = "user_key"
     }
 }

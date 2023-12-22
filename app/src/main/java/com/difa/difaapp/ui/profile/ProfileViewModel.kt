@@ -14,18 +14,4 @@ class ProfileViewModel(private val repository: AppRepository) : ViewModel(){
 
 
     fun getSessionGoogleUser() = repository.getGoogleUser().asLiveData()
-
-    fun profileUser(id: Int) = repository.profileUser(id)
-
-    fun setUserNormal(user: User){
-        viewModelScope.launch {
-            repository.setSessionNormalLogin(user)
-        }
-    }
-
-    suspend fun clearSession(){
-        viewModelScope.launch {
-            repository.clearTokenSession()
-        }
-    }
 }

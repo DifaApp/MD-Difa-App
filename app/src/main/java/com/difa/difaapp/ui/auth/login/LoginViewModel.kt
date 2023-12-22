@@ -13,9 +13,11 @@ class LoginViewModel(private val repository: AppRepository): ViewModel() {
 
     fun isUserLoginWithGoogle(isLoginWithGoogle: Boolean){
         viewModelScope.launch {
-            repository.saveIsUserGoogle(true)
+            repository.saveIsUserGoogle(isLoginWithGoogle)
         }
     }
+
+    fun profileUser(id: Int) = repository.profileUser(id)
 
     fun setUserNormal(user: User){
         viewModelScope.launch {

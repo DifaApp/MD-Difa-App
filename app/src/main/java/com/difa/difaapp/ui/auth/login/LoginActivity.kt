@@ -151,11 +151,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
             if(result != null){
                 when(result){
                     is Result.Loading -> {
-                        showDialog()
                     }
                     is Result.Success -> {
-                        dismissLoading()
-                        bottomSheetLogin.show(supportFragmentManager, "BottomSheetLogin")
                         setUserNormal(result)
                     }
                     is Result.Error -> {
@@ -168,20 +165,38 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setUserNormal(result: Result.Success<LoginResponse>) {
+        val dataToken = result.data.loginResult.token
         val userId = result.data.loginResult.userId
-        val userName = result.data.loginResult.name
-        val userEmail = result.data.loginResult.email
-        val token = result.data.loginResult.token
-        val user = User(
-            id = userId,
-            name = userName,
-            email = userEmail,
-            gender = "",
-            birtDate = "0000-00-00",
-            avatar = "",
-            token = token
-        )
-        viewModel.setUserNormal(user)
+        viewModel.profileUser(userId).observe(this){result->
+            if(result != null){
+                when(result){
+                    is Result.Loading -> {
+                        showDialog()
+                    }
+                    is Result.Success -> {
+                        dismissLoading()
+                        val dataUser = result.data.user
+                        val userName = dataUser.name
+                        val userEmail = dataUser.email
+                        val user = User(
+                            id = userId,
+                            name = userName,
+                            email = userEmail,
+                            gender = dataUser.gender ?: "",
+                            birtDate = dataUser.birthdate ?: "",
+                            avatar = dataUser.profilePicture ?: "",
+                            token = dataToken
+                        )
+                        viewModel.setUserNormal(user)
+                        bottomSheetLogin.show(supportFragmentManager, "BottomSheetLogin")
+                    }
+                    is Result.Error -> {
+                        dismissLoading()
+                        Snackbar.make(binding.root, "Terjadi Error", Snackbar.LENGTH_LONG).show()
+                    }
+                }
+            }
+        }
     }
 
     companion object{

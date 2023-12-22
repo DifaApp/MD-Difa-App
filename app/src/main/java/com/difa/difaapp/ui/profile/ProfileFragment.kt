@@ -72,7 +72,6 @@ class ProfileFragment : Fragment(), View.OnClickListener {
         })
 
         binding.linearRootPrivacy.setOnClickListener(this)
-        binding.linearRootProfile.setOnClickListener(this)
         binding.linearRootSettings.setOnClickListener(this)
         binding.linearRootLogout.setOnClickListener(this)
     }
@@ -80,14 +79,40 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private fun setupProfile(data: User) {
         binding.tvProfileName.text = data.name
         binding.tvEmail.text = data.email
+
+        val imageEmpty = R.drawable.pp_gender_unknow
+        val imageFemale = R.drawable.pp_female
+        val imageMale = R.drawable.pp_male
+
+        if(data.gender.isEmpty()){
+            Glide.with(requireActivity())
+                .load(imageEmpty)
+                .into(binding.ivImageProfile)
+        }else {
+            when(data.gender){
+                "Perempuan" -> {
+                    Glide.with(requireActivity())
+                        .load(imageFemale)
+                        .into(binding.ivImageProfile)
+                }
+                "Laki-Laki" -> {
+                    Glide.with(requireActivity())
+                        .load(imageMale)
+                        .into(binding.ivImageProfile)
+                }
+            }
+        }
+
+        binding.linearRootProfile.setOnClickListener{
+            val intent = Intent(requireActivity(), UpdateProfileActivity::class.java)
+            intent.putExtra(UpdateProfileActivity.USER_KEY, data)
+            startActivity(intent)
+        }
     }
     override fun onClick(view: View) {
         when(view.id){
             R.id.linear_root_privacy -> {
                 startActivity(Intent(requireActivity(), KebijakanActivity::class.java))
-            }
-            R.id.linear_root_profile -> {
-                startActivity(Intent(requireActivity(), UpdateProfileActivity::class.java))
             }
             R.id.linear_root_settings -> {
                 startActivity(Intent(requireActivity(), SettingActivity::class.java))
