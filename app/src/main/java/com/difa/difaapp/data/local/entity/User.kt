@@ -1,5 +1,9 @@
 package com.difa.difaapp.data.local.entity
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class User(
     val id: Int,
     val name: String,
@@ -8,4 +12,4 @@ data class User(
     val gender: String,
     val avatar: String? = "",
     val token: String
-)
+): Parcelable
