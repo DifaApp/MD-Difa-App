@@ -67,6 +67,7 @@ class BottomSheetAuth(private val type: BottomSheetAuthType): BottomSheetDialogF
                 tvBtnBsAuth.text = requireActivity().getString(R.string.text_kembali)
 
                 cardAuth.setOnClickListener {
+                    requireActivity().finish()
                     dismiss()
                 }
             }

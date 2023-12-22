@@ -54,16 +54,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:button="@android:color/transparent"
                 android:background="@drawable/custom_radio_selector"
-                android:textAlignment="center"
+                android:button="@android:color/transparent"
+                android:drawableLeft="@drawable/custom_drawable_male_selector"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="20dp"
-                android:textColor="@drawable/custome_text_selector"
-                android:drawableLeft="@drawable/custom_drawable_male_selector"
                 android:text="Laki-Laki"
+                android:textAlignment="center"
+                android:textColor="@drawable/custome_text_selector"
                 android:textSize="16dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </RadioGroup>
 
